@@ -85,7 +85,7 @@ The SDK provides two navigation strategies for browsing categories:
 
 ![breadcrumb](/vue-sdk-demo/readme-assets/breadcrumbs-categories.png)
 
-File: `vue-sdk-demo/src/components/FormSelectionBreadcrumb.vue`
+File: [`FormSelectionBreadcrumb.vue`](./src/components/FormSelectionBreadcrumb.vue)
 
 **How it works:**
 
@@ -101,7 +101,7 @@ File: `vue-sdk-demo/src/components/FormSelectionBreadcrumb.vue`
 
 ![filter](/vue-sdk-demo/readme-assets/filter-categories.png)
 
-File: `vue-sdk-demo/src/components/FormSelectionFilter.vue`
+File: [`FormSelectionFilter.vue`](./src/components/FormSelectionFilter.vue)
 
 **How it works:**
 
@@ -115,7 +115,7 @@ File: `vue-sdk-demo/src/components/FormSelectionFilter.vue`
 
 ![form-card](/vue-sdk-demo/readme-assets/form-card.png)
 
-File: `vue-sdk-demo/src/components/FormCards.vue`
+File: [`FormCards.vue`](./src/components/FormCards.vue)
 
 **What happens when you click on a form card:**
 
@@ -170,7 +170,7 @@ onUnmounted(() => {
 
 ![form](/vue-sdk-demo/readme-assets/form.png)
 
-File: `vue-sdk-demo/src/pages/ConfigComponent.vue`
+File: [`ConfigComponent.vue`](./src/pages/ConfigComponent.vue)
 
 **Parts of the form:**
 
@@ -188,7 +188,7 @@ File: `vue-sdk-demo/src/pages/ConfigComponent.vue`
 
 ### 5. Submit the form
 
-File: `vue-sdk-demo/src/pages/CheckoutComponent.vue`
+File: [`CheckoutComponent.vue`](./src/pages/CheckoutComponent.vue)
 
 #### Contact details
 
