@@ -69,9 +69,15 @@ And the SDK’s peer dependencies:
 - `zod` (for validation)
 - `zustand` (for state management)
 
-## Flow
+## Quick start
 
-### 1. Navigate by categories
+### 1. Running the demo
+
+To follow this guide, you can execute the development server as explained in the [Start development server](#start-development-server) section.
+
+The following steps will guide you through the different parts of the application and indicate where in the codebase you can find the implementation of each feature being explained.
+
+### 2. Navigate by categories
 
 The SDK provides two navigation strategies for browsing categories:
 
@@ -105,7 +111,7 @@ File: `vue-sdk-demo/src/components/FormSelectionFilter.vue`
 - The "All" option allows resetting to show all categories.
 - Always shows the forms for the current level of the category tree.
 
-### 2. Create a new config
+### 3. Create a new config
 
 ![form-card](/vue-sdk-demo/readme-assets/form-card.png)
 
@@ -160,7 +166,7 @@ onUnmounted(() => {
 })
 ```
 
-### 3. Navigate through the form
+### 4. Navigate through the form
 
 ![form](/vue-sdk-demo/readme-assets/form.png)
 
@@ -180,7 +186,7 @@ File: `vue-sdk-demo/src/pages/ConfigComponent.vue`
 
 - The `setCurrentProgress` function is used to update the current progress.
 
-### 4. Submit the form
+### 5. Submit the form
 
 File: `vue-sdk-demo/src/pages/CheckoutComponent.vue`
 
