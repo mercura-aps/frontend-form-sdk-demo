@@ -1,0 +1,2 @@
+[install.scopes]
+"@mercura-aps" = { username = "$NPM_USER", password = "$NPM_PASS", url = "https://npm.pkg.mercura.io/" }

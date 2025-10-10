@@ -1,0 +1,25 @@
+import { createVueFormSDK } from '@mercura-aps/frontend-form-sdk/vue'
+
+export const {
+  SDKStore,
+  useSDK,
+  useConfigs,
+  useForms,
+  useLocalization,
+  useReset,
+  useFormByCurrentConfigId,
+  useValuesByCurrentConfigId,
+  useValuesByConfigId,
+  useForm,
+  useFormByConfigId,
+  useValues,
+  useAuth,
+  useFinishedConfigs,
+  useNumberFormatter,
+  useContactDetails,
+  useAddons,
+  useAppearance,
+  useFormCategories,
+  useOptions,
+  useSubmit,
+} = createVueFormSDK()
