@@ -9,3 +9,4 @@ This repository contains demo projects for the Mercura Frontend SDK.
 A complete Vue.js demonstration of the Mercura Frontend SDK.
 
 📚 [View Vue SDK Demo Documentation](./vue-sdk-demo/README.md)
+📚 [View React SDK Demo Documentation](./react-sdk-demo/README.md)
