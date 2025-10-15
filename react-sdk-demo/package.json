@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mercura-aps/frontend-form-sdk": "^1.0.0-r.4",
+    "@mercura-aps/frontend-form-sdk": "^1.0.0",
     "@mercura-aps/frontend-schemas": "^1.0.4",
     "@tailwindcss/vite": "^4.1.14",
     "@tanstack/query-core": "^5.90.2",
