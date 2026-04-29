@@ -17,7 +17,7 @@ export default function ElementDisplay({ element }: { element: TElement }) {
         state.getResolveOptionPrice()
     );
 
-    const message = useFormByCurrentConfigId(
+    const messages = useFormByCurrentConfigId(
         (state) => state.messages.elements[element.id]
     );
     const renderOptions = (() => {
@@ -102,11 +102,18 @@ export default function ElementDisplay({ element }: { element: TElement }) {
 
     return (
         <div className="relative flex flex-1 flex-col gap-2 rounded-md border p-2">
-            {message && (
+            {messages?.length ? (
                 <div className="sticky top-0">
-                    <MessageDisplay message={message} />
+                    <div className="flex flex-col gap-1">
+                        {messages.map((message, index) => (
+                            <MessageDisplay
+                                key={`${message.type}-${message.message}-${index}`}
+                                message={message}
+                            />
+                        ))}
+                    </div>
                 </div>
-            )}
+            ) : null}
             <div>
                 {element.label}{" "}
                 {element.state === "required" && (

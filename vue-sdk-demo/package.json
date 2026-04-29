@@ -16,8 +16,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@mercura-aps/frontend-form-sdk": "^1.0.0",
-    "@mercura-aps/frontend-schemas": "^1.0.4",
+    "@mercura-aps/frontend-form-sdk": "1.8.0",
+    "@mercura-aps/frontend-schemas": "^1.26.1",
     "@tanstack/query-core": "^5.90.2",
     "vue": "^3.5.22",
     "vue-router": "^4.5.1",

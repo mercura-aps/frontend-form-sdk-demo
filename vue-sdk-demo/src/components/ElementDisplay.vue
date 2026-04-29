@@ -16,14 +16,18 @@ const hasOptions = (element: TElement): element is TElement & { options: any[] }
     return 'options' in element;
 };
 
-const message = useFormByCurrentConfigId(state => state.messages.elements[props.element.id]);
+const messages = useFormByCurrentConfigId(state => state.messages.elements[props.element.id]);
 
 </script>
 
 <template>
     <div class="flex flex-1 flex-col gap-2 rounded-md border p-2 relative">
-        <div v-if="message" class="sticky top-0">
-            <MessageDisplay :message="message" />
+        <div v-if="messages?.length" class="sticky top-0 flex flex-col gap-1">
+            <MessageDisplay
+                v-for="(message, index) in messages"
+                :key="`${message.type}-${message.message}-${index}`"
+                :message="message"
+            />
         </div>
         <div>
             {{ props.element.label }} {{ props.element.state === 'required' ? '*' : '' }}

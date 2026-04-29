@@ -10,12 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mercura-aps/frontend-form-sdk": "^1.0.0",
+    "@mercura-aps/frontend-form-sdk": "^1.8.0",
     "@mercura-aps/frontend-schemas": "^1.0.4",
     "@tailwindcss/vite": "^4.1.14",
     "@tanstack/query-core": "^5.90.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-router": "^7.9.4",
     "tailwindcss": "^4.1.14",
     "use-sync-external-store": "^1.6.0",
