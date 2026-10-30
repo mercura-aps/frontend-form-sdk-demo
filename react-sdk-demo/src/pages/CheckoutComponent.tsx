@@ -1,4 +1,9 @@
-import { useState } from "react";
+import {
+    isElement,
+    isGroup,
+    isRepeatableGroup,
+} from "@mercura-aps/frontend-form-sdk";
+import { Fragment, useState } from "react";
 import ContactDetails from "../components/ContactDetails";
 import GroupSummary from "../components/GroupSummary";
 import Submit from "../components/SubmitComponent";
@@ -57,32 +62,58 @@ export default function Checkout() {
                             Selected Value
                         </div>
 
-                        {currentFinishedConfig.stepsWithSelections.map((step) =>
-                            "elements" in step ? (
-                                <GroupSummary
-                                    key={step.id}
-                                    group={step}
-                                    values={currentFinishedConfig.values}
-                                    quantities={
-                                        currentFinishedConfig.quantities
-                                    }
-                                />
-                            ) : (
-                                <>
+                        {currentFinishedConfig.stepsWithSelections.map((step) => {
+                            if (isRepeatableGroup(step)) {
+                                return (
+                                    <Fragment key={step.id}>
+                                        {step.instances.map(
+                                            (instance, index) => (
+                                                <GroupSummary
+                                                    key={instance.instanceId}
+                                                    title={`${step.label} ${index + 1}`}
+                                                    group={instance.group}
+                                                    values={
+                                                        currentFinishedConfig.values
+                                                    }
+                                                    quantities={
+                                                        currentFinishedConfig.quantities
+                                                    }
+                                                />
+                                            )
+                                        )}
+                                    </Fragment>
+                                );
+                            }
+                            if (isGroup(step)) {
+                                return (
+                                    <GroupSummary
+                                        key={step.id}
+                                        group={step}
+                                        values={currentFinishedConfig.values}
+                                        quantities={
+                                            currentFinishedConfig.quantities
+                                        }
+                                    />
+                                );
+                            }
+                            if (!isElement(step)) {
+                                return null;
+                            }
+                            return (
+                                <Fragment key={step.id}>
                                     <div className="col-span-2 mt-4 mb-2 border-t border-gray-200 pt-2 text-xl font-semibold text-blue-600">
                                         {step.label}
                                     </div>
                                     <SummaryElementRow
-                                        key={step.id}
                                         element={step}
                                         values={currentFinishedConfig.values}
                                         quantities={
                                             currentFinishedConfig.quantities
                                         }
                                     />
-                                </>
-                            )
-                        )}
+                                </Fragment>
+                            );
+                        })}
                         <div className="col-span-2 py-1 font-medium text-gray-600">
                             {configPrice}
                         </div>

@@ -8,6 +8,7 @@ const props = defineProps<{
   values: TValues; 
   quantities: TQuantities; 
   configId: number;
+  title?: string;
 }>();
 
 const resolveStepPrice = useNumberFormatter(state => state.getResolveStepPrice());
@@ -15,7 +16,7 @@ const resolveStepPrice = useNumberFormatter(state => state.getResolveStepPrice()
 
 <template>
     <div class="col-span-2 mt-4 mb-2 border-t border-gray-200 pt-2 text-xl font-semibold text-blue-600">
-        {{ group.label }}
+        {{ title ?? group.label }}
     </div>
     <SummaryElementRow 
       v-for="element in group.elements" 
