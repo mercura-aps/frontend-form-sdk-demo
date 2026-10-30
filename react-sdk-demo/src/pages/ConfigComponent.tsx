@@ -1,8 +1,14 @@
+import {
+    isElement,
+    isGroup,
+    isRepeatableGroup,
+} from "@mercura-aps/frontend-form-sdk";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import ConfigsNavigation from "../components/ConfigsNavigation";
 import ElementDisplay from "../components/ElementDisplay";
 import GroupDisplay from "../components/GroupDisplay";
+import RepeatableGroup from "../components/RepeatableGroup";
 import StepsNavigation from "../components/StepsNavigation";
 import { useConfigs, useFormByCurrentConfigId } from "../form-sdk";
 
@@ -45,17 +51,22 @@ export default function Config() {
                         >
                             Next step
                         </button>
-                        {"elements" in currentStep ? (
+                        {isRepeatableGroup(currentStep) ? (
+                            <RepeatableGroup
+                                key={currentStep.id}
+                                group={currentStep}
+                            />
+                        ) : isGroup(currentStep) ? (
                             <GroupDisplay
                                 key={currentStep.id}
                                 group={currentStep}
                             />
-                        ) : (
+                        ) : isElement(currentStep) ? (
                             <ElementDisplay
-                                key={currentStep?.id}
+                                key={currentStep.id}
                                 element={currentStep}
                             />
-                        )}
+                        ) : null}
                     </div>
                 ) : (
                     <div>Loading...</div>

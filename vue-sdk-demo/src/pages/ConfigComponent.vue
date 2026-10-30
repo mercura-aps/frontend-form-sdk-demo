@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { isElement, isGroup, isRepeatableGroup } from '@mercura-aps/frontend-form-sdk';
 import { onUnmounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import ConfigsNavigation from '../components/ConfigsNavigation.vue';
 import ElementDisplay from '../components/ElementDisplay.vue';
 import GroupDisplay from '../components/GroupDisplay.vue';
+import RepeatableGroup from '../components/RepeatableGroup.vue';
 import StepsNavigation from '../components/StepsNavigation.vue';
 import { useConfigs, useFormByCurrentConfigId } from '../form-sdk';
 
@@ -43,8 +45,9 @@ const isCurrentStepFinished = useFormByCurrentConfigId(state => state.isCurrentS
                 >
                     Next step
                 </button>
-                <GroupDisplay v-if="'elements' in currentStep" :group="currentStep" />
-                <ElementDisplay v-else :element="currentStep" />
+                <RepeatableGroup v-if="isRepeatableGroup(currentStep)" :group="currentStep" />
+                <GroupDisplay v-else-if="isGroup(currentStep)" :group="currentStep" />
+                <ElementDisplay v-else-if="isElement(currentStep)" :element="currentStep" />
             </div>
         </div>
         <ConfigsNavigation />

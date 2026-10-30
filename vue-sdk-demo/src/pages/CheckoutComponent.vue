@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isElement, isGroup, isRepeatableGroup } from '@mercura-aps/frontend-form-sdk';
 import { computed, ref } from 'vue';
 import ContactDetails from '../components/ContactDetails.vue';
 import GroupSummary from '../components/GroupSummary.vue';
@@ -52,14 +53,25 @@ const configPrice = useNumberFormatter(state =>
                 </div>
 
                 <template v-for="step in currentFinishedConfig.stepsWithSelections" :key="step.id">
-                    <GroupSummary 
-                        v-if="'elements' in step" 
-                        :group="step" 
-                        :values="currentFinishedConfig.values" 
-                        :quantities="currentFinishedConfig.quantities" 
+                    <template v-if="isRepeatableGroup(step)">
+                        <GroupSummary
+                            v-for="(instance, index) in step.instances"
+                            :key="instance.instanceId"
+                            :title="`${step.label} ${index + 1}`"
+                            :group="instance.group"
+                            :values="currentFinishedConfig.values"
+                            :quantities="currentFinishedConfig.quantities"
+                            :configId="currentFinishedConfig.config.id"
+                        />
+                    </template>
+                    <GroupSummary
+                        v-else-if="isGroup(step)"
+                        :group="step"
+                        :values="currentFinishedConfig.values"
+                        :quantities="currentFinishedConfig.quantities"
                         :configId="currentFinishedConfig.config.id"
                     />
-                    <template v-else>
+                    <template v-else-if="isElement(step)">
                         <div class="col-span-2 mt-4 mb-2 border-t border-gray-200 pt-2 text-xl font-semibold text-blue-600">
                             {{ step.label }}
                         </div>
