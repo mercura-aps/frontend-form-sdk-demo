@@ -3,7 +3,7 @@ import {
     isGroup,
     isRepeatableGroup,
 } from "@mercura-aps/frontend-form-sdk";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useParams } from "react-router";
 import ConfigsNavigation from "../components/ConfigsNavigation";
 import ElementDisplay from "../components/ElementDisplay";
@@ -11,6 +11,41 @@ import GroupDisplay from "../components/GroupDisplay";
 import RepeatableGroup from "../components/RepeatableGroup";
 import StepsNavigation from "../components/StepsNavigation";
 import { useConfigs, useFormByCurrentConfigId } from "../form-sdk";
+
+const STEP_COMPONENTS = {
+    repeatableGroup: RepeatableGroup,
+    group: GroupDisplay,
+    element: ElementDisplay,
+};
+
+function renderCurrentStep(step: Parameters<typeof isElement>[0]) {
+    if (isRepeatableGroup(step)) {
+        const Component = STEP_COMPONENTS.repeatableGroup;
+        return (
+            <Fragment key={step.id}>
+                <Component group={step} />
+            </Fragment>
+        );
+    }
+    if (isGroup(step)) {
+        const Component = STEP_COMPONENTS.group;
+        return (
+            <Fragment key={step.id}>
+                <Component group={step} />
+            </Fragment>
+        );
+    }
+    if (isElement(step)) {
+        const Component = STEP_COMPONENTS.element;
+        return (
+            <Fragment key={step.id}>
+                <Component element={step} />
+            </Fragment>
+        );
+    }
+
+    return null;
+}
 
 export default function Config() {
     const setCurrentConfigId = useConfigs((state) => state.setCurrentConfigId);
@@ -37,9 +72,9 @@ export default function Config() {
     return (
         <div>
             <div className="flex gap-2">
-                <div>
+                <Fragment>
                     <StepsNavigation />
-                </div>
+                </Fragment>
                 {currentStep && !isLoading ? (
                     <div>
                         <button
@@ -51,22 +86,7 @@ export default function Config() {
                         >
                             Next step
                         </button>
-                        {isRepeatableGroup(currentStep) ? (
-                            <RepeatableGroup
-                                key={currentStep.id}
-                                group={currentStep}
-                            />
-                        ) : isGroup(currentStep) ? (
-                            <GroupDisplay
-                                key={currentStep.id}
-                                group={currentStep}
-                            />
-                        ) : isElement(currentStep) ? (
-                            <ElementDisplay
-                                key={currentStep.id}
-                                element={currentStep}
-                            />
-                        ) : null}
+                        {renderCurrentStep(currentStep)}
                     </div>
                 ) : (
                     <div>Loading...</div>

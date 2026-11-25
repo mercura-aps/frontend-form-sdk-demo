@@ -23,6 +23,7 @@ export default function CreateConfigs() {
                                 <div>{config.name}</div>
                                 <div>
                                     <button
+                                        disabled={config.configQuantity <= 1}
                                         onClick={() =>
                                             updateConfig(config.id, {
                                                 configQuantity:
